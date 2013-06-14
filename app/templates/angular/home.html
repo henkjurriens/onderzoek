@@ -3,11 +3,7 @@
     <h3>{{ vraag }}</h3>
 
 
-    <div ng-switch on="getType()" >
-        <div ng-switch-when="open">
-          <input type="text" ng-model="answer">      
-       </div>
-    </div>    
+    <div ng-include  src="getType()"></div>
 
     <div class="row">
       <div class="large-12 columns">

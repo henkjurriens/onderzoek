@@ -2,7 +2,7 @@ angular.module("app").factory('QuestionService', function() {
 	var index = 0;
 	var maxQuestions = 3;
 	var questions = [ {vraag : "dit is een vraag", type : "open", answer : "a"}, { vraag: "dit is een tweede vraag", type : "open", answer : "b"},  { vraag: "dit is een derde vraag"} ];
-	var answer = "a"; 
+	var answer = ""; 
 
   
 	return {
@@ -35,7 +35,7 @@ angular.module("app").factory('QuestionService', function() {
 		}, 
 		getType : function () {
     		type = questions[index].type;
-    		return  type;	
+    		return  "angular/" + type + '.html';	
     	}	
   	};
 });	
