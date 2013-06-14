@@ -1,7 +1,9 @@
 angular.module("app").factory('QuestionService', function() {
 	var index = 0;
 	var maxQuestions = 3;
-	var questions = [ {vraag : "dit is een vraag", type : "open", answer : "a"}, { vraag: "dit is een tweede vraag", type : "open", answer : "b"},  { vraag: "dit is een derde vraag"} ];
+	var questions = [ {vraag : "dit is een vraag", type : "open", answer : "a"}, 
+					  { vraag: "dit is een tweede vraag", type : "check", answer : "a|b|c|d"},  
+					  { vraag: "dit is een derde vraag"} ];
 	var answer = ""; 
 
   
@@ -23,7 +25,7 @@ angular.module("app").factory('QuestionService', function() {
 		},
 		next : function() {
 			if (index < maxQuestions) {	
-				index++;
+				index++;	
 			}	
 			return questions[index].vraag;
 		},
@@ -36,7 +38,21 @@ angular.module("app").factory('QuestionService', function() {
 		getType : function () {
     		type = questions[index].type;
     		return  "angular/" + type + '.html';	
+    	},
+    	getOptions : function() {
+    		var json = [];
+    		var options = questions[index].answer.split("|");
+    		for (var i = 0; i < options.length; i++) {
+			    var item = {
+			        "value": options[i],
+			        "label": i
+			    };
+    			json.push(item);
+			}
+    		return json;
     	}	
+
+
   	};
 });	
 

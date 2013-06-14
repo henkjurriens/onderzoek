@@ -36,7 +36,11 @@ angular.module("app").controller('HomeController', function($scope, $location, A
   };
 
   $scope.getPartial = function () {
-          return 'angular/open.html';
+    return 'angular/open.html';
+  };
+
+  $scope.getOptions = function() {
+    return QuestionService.getOptions();
   };
 
   });
