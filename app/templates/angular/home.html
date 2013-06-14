@@ -1,0 +1,19 @@
+<div id="home" class="row">
+  <div class="large-6 large-offset-3">
+    <h3>{{ vraag }}</h3>
+
+
+    <div ng-switch on="getType()" >
+        <div ng-switch-when="open">
+          <input type="text" ng-model="answer">      
+       </div>
+    </div>    
+
+    <div class="row">
+      <div class="large-12 columns">
+        <button ng-click="previous()" class="button large expand radius">Vorige</button>
+        <button ng-click="next()" class="button large expand radius">Volgende</button>
+      </div>
+    </div>
+  </div>
+</div>
