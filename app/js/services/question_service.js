@@ -1,8 +1,10 @@
 angular.module("app").factory('QuestionService', function() {
 	var index = 0;
 	var maxQuestions = 3;
+	var into   = { tekst : "dit is een intro"};
+
 	var questions = [ {vraag : "dit is een vraag", type : "open", answer : "a"}, 
-					  { vraag: "dit is een tweede vraag", type : "check", answer : "a|b|c|d"},  
+					  { vraag: "dit is een tweede vraag", type : "check", options : "a|b|c|d", answer : "a|d"},  
 					  { vraag: "dit is een derde vraag"} ];
 	var answer = ""; 
 
@@ -19,7 +21,6 @@ angular.module("app").factory('QuestionService', function() {
 		setAnswer : function(answer) {
 			questions[index].answer = answer;
 		},
-
 		getQuestion : function() {
 			return questions[index].vraag;
 		},
@@ -41,16 +42,31 @@ angular.module("app").factory('QuestionService', function() {
     	},
     	getOptions : function() {
     		var json = [];
-    		var options = questions[index].answer.split("|");
+    		var options = questions[index].options.split("|");
+    		var answer = questions[index].answer;
     		for (var i = 0; i < options.length; i++) {
 			    var item = {
 			        "value": options[i],
-			        "label": i
+			        "label": i,
+			        "checked": answer.indexOf(options[i]) !== -1
 			    };
     			json.push(item);
 			}
     		return json;
-    	}	
+    	},	
+    	setOptions : function(options) {
+    		var answer = [];
+    		for (var i = 0; i < options.length; i++) {
+			 	if (options[i].checked) {
+    				answer.push(options[i].value);
+    			}
+			}
+			questions[index].answer =  answer.join("|");
+
+    	},
+    	getIntro : function() {
+    		return into;
+    	}
 
 
   	};

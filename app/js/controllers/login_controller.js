@@ -1,12 +1,9 @@
-angular.module("app").controller('LoginController', function($scope, $location, AuthenticationService) {
-  $scope.credentials = { username: "", password: "" };
+angular.module("app").controller('LoginController', function($scope, $location, QuestionService) {
+	$scope.intro = QuestionService.getIntro();
 
-  var onLoginSuccess = function(response) {
-    alert(response.message);
-    $location.path('/home');
-  };
+	$scope.start =  function() {
+		$location.path('/home');
+	}
 
-  $scope.login = function() {
-    AuthenticationService.login($scope.credentials).success(onLoginSuccess);
-  };
+  
 });
