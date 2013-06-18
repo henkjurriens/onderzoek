@@ -1,7 +1,8 @@
 angular.module("app").factory('QuestionService', function() {
 	var index = 0;
 	var maxQuestions = 3;
-	var into   = { tekst : "dit is een intro"};
+	var intro   = { tekst : "dit is een intro"};
+	var closing = { tekst : "dit is het einde"};
 
 	var questions = [ {vraag : "dit is een vraag", type : "open", answer : "a"}, 
 					  { vraag: "dit is een tweede vraag", type : "check", options : "a|b|c|d", answer : "a|d"},  
@@ -28,7 +29,7 @@ angular.module("app").factory('QuestionService', function() {
 			if (index < maxQuestions) {	
 				index++;	
 			}	
-			return questions[index].vraag;
+			return index == maxQuestions ? "-1" : questions[index].vraag;
 		},
 		previous : function() {
 			if (index > 0 ) {
@@ -65,9 +66,11 @@ angular.module("app").factory('QuestionService', function() {
 
     	},
     	getIntro : function() {
-    		return into;
+    		return intro;	
+    	},
+		getClosing : function() {
+    		return closing;	
     	}
-
 
   	};
 });	

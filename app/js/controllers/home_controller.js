@@ -1,8 +1,20 @@
-angular.module("app").controller('HomeController', function($scope, $location, QuestionService) {
+angular.module("app").controller('HomeController', function($scope, $location, $http, $resource, QuestionService) {
   $scope.title = "Home";
   $scope.vraag = QuestionService.getQuestion();
   $scope.answer = { answer : QuestionService.getAnswer() };
   $scope.options = {};
+
+/**
+  var Onderzoek = $resource('http://www.ihenk.com/onderzoek/:id', {id :'@id'});
+
+
+  var onderzoek = Onderzoek.get({id:123}, function() {
+     alert('ok');
+//     console.log(onderzoek);
+  });
+
+  console.log(Onderzoek.$get());
+*/
 
   $scope.id = $location.search().id;
 
@@ -10,7 +22,11 @@ angular.module("app").controller('HomeController', function($scope, $location, Q
     QuestionService.setAnswer($scope.answer.answer);
     QuestionService.setOptions($scope.options);
    	this.vraag = QuestionService.next(); 
-    this.answer.answer = QuestionService.getAnswer();
+    if (this.vraag == "-1") {
+      $location.path('/closing');
+    } else {
+      this.answer.answer = QuestionService.getAnswer();
+    }
   };
 
   $scope.previous = function() {

@@ -1,8 +1,8 @@
 angular.module("app").config(function($routeProvider) {
 
-  $routeProvider.when('/login', {
-    templateUrl: 'angular/login.html',
-    controller: 'LoginController'
+  $routeProvider.when('/intro', {
+    templateUrl: 'angular/intro.html',
+    controller: 'IntroController'
   });
 
   $routeProvider.when('/home', {
@@ -10,6 +10,17 @@ angular.module("app").config(function($routeProvider) {
     controller: 'HomeController'
   });
 
-  $routeProvider.otherwise({ redirectTo: '/login' });
+  $routeProvider.when('/closing', {
+    templateUrl: 'angular/closing.html',
+    controller: 'ClosingController'
+  });
+
+
+  $routeProvider.when('/rest/onderzoek/1', {
+    templateUrl: 'angular/rest/onderzoek.html',
+  });
+
+
+  $routeProvider.otherwise({ redirectTo: '/intro' });
 
 });
